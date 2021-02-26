@@ -22,7 +22,7 @@ const GetIngest = async () => {
         .addInputOption("-ignore_loop 0")
         .addInput("https://lofi.stream.laut.fm/lofi")
         .size("1920x1080")
-        .videoBitrate(1000, true):
+        .videoBitrate(1000, true)
         .withAspect('16:9')
         .videoCodec('libx264')
         .audioCodec('aac')
