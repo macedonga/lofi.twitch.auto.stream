@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <div class="stats">
+        <div class="w3-border">
+            <div class="w3-container w3-yellow w3-center" style="height:24px;width:<%=cpu%>%">CPU - <%=cpu%>%</div>
+        </div>
+        <div class="w3-border">
+            <div class="w3-container w3-red w3-center" style="height:24px;width:<%=ram%>%">RAM - <%=ram%>%</div>
+        </div>
+    </div>
+
+    <!--
+    <div class="w3-center">
+        <% if (!started) { %>
+            <button class="w3-btn w3-green" onclick="ShowAuth()">Start</button>
+            <% } else { %>
+                <button class="w3-btn w3-red" onclick="ShowAuth()">Stop</button>
+                <% } %>
+    </div>
+    -->
+
+    <div id="auth" class="w3-modal">
+        <div class="w3-modal-content">
+            <header class="w3-container w3-green">
+                <span onclick="HideAuth()" class="w3-button w3-display-topright">&times;</span>
+                <h2>Authentication</h2>
+            </header>
+
+            <div class="w3-container container">
+                <label style="margin: 10px;">Password</label>
+                <input class="w3-input" id="password" style="margin: 10px;" type="text">
+                <button class="w3-btn w3-red" onclick="Send()" style="margin: 10px;">Send</button>
+            </div>
+
+            <footer class="w3-container w3-green">
+                <p>By clicking "Send" your IP address will be logged motherfucker</p>
+            </footer>
+
+        </div>
+    </div>
+    <style>
+        .stats {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .stats .w3-border {
+            width: 100%;
+            margin: 5px;
+            font-size: xx-small;
+        }
+
+        .container {
+            padding: 10px;
+        }
+    </style>
+    <script>
+        const ShowAuth = () => {
+            clearTimeout(timeout);
+            document.getElementById('auth').style.display = 'block'
+        }
+
+        const HideAuth = () => {
+            timeout = setTimeout(() => location.reload(), 1000)
+            document.getElementById('auth').style.display = 'none'
+        }
+
+        const Send = () => {
+            const passw = document.getElementById("password").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "/start", true);
+            xhr.setRequestHeader("Authorization", passw);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) alert(JSON.parse(xhr.response).message);
+                location.reload();
+            };
+            xhr.send();
+        }
+
+        let timeout = setTimeout(() => location.reload(), 1000)
+    </script>
+</body>
+
+</html>
