@@ -30,7 +30,7 @@ module.exports.Start = async () => {
         .videoCodec('libx264')
         .audioCodec('aac')
         .toFormat('flv')
-        .save("rtmp://a.rtmp.youtube.com/live2/" + process.env.YT_STREAM_KEY);
+        .save(ingest);
 }
 
 module.exports.Stop = async () => {
