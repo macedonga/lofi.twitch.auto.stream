@@ -23,7 +23,6 @@ module.exports.Start = async () => {
         .addInput("./assets/bkg.gif")
         .addInputOption("-ignore_loop 0")
         .addInput("https://lofi.stream.laut.fm/lofi")
-        .output(ingest)
         .size(process.env.VIDEO_SIZE)
         .output(ingest)
         .videoBitrate(process.env.BITRATE)
@@ -31,7 +30,7 @@ module.exports.Start = async () => {
         .videoCodec('libx264')
         .audioCodec('aac')
         .toFormat('flv')
-        .output("rtmp://a.rtmp.youtube.com/live2/" + process.env.YT_STREAM_KEY);
+        .save("rtmp://a.rtmp.youtube.com/live2/" + process.env.YT_STREAM_KEY);
 }
 
 module.exports.Stop = async () => {
