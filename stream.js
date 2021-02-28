@@ -24,7 +24,6 @@ module.exports.Start = async () => {
         .addInputOption("-ignore_loop 0")
         .addInput("https://lofi.stream.laut.fm/lofi")
         .size(process.env.VIDEO_SIZE)
-        .output(ingest)
         .videoBitrate(process.env.BITRATE)
         .withAspect('16:9')
         .videoCodec('libx264')
