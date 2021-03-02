@@ -22,7 +22,7 @@ module.exports.Start = async () => {
     command = ffmpeg()
         .addInput("./assets/bkg.gif")
         .addInputOption("-ignore_loop 0")
-        .addInput("https://lofi.stream.laut.fm/lofi")
+        .addInput("https://ais-sa2.cdnstream1.com/2070_128.mp3")
         .size(process.env.VIDEO_SIZE)
         .videoBitrate(process.env.BITRATE)
         .withAspect('16:9')
