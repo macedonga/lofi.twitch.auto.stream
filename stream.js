@@ -17,11 +17,30 @@ const GetIngest = async () => {
 module.exports.Start = async () => {
     started = true;
     console.log("Started streaming!");
-    const ingest = await GetIngest();
+    let ingest;
+    if (!process.env.INGEST)
+        ingest = await GetIngest();
+    else
+        ingest = process.env.INGEST;
 
     command = ffmpeg()
         .addInput("./assets/bkg.gif")
         .addInputOption("-ignore_loop 0")
+        .videoFilters({
+            filter: 'drawtext',
+            options: {
+                fontfile: './assets/font.ttf',
+                textfile: "./assets/livetext.txt",
+                fontsize: 40,
+                fontcolor: 'white',
+                x: 'w-w/3*mod(t,10*(w+tw)/w)',
+                y: '(main_h-60)',
+                reload: 1,
+                shadowcolor: 'black',
+                shadowx: 2,
+                shadowy: 2,
+            }
+        })
         .addInput("https://ais-sa2.cdnstream1.com/2070_128.mp3")
         .size(process.env.VIDEO_SIZE)
         .videoBitrate(process.env.BITRATE)
