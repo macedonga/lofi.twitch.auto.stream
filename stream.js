@@ -33,7 +33,7 @@ module.exports.Start = async () => {
                 textfile: "./assets/livetext.txt",
                 fontsize: 40,
                 fontcolor: 'white',
-                x: 'w-w/3*mod(t,10*(w+tw)/w)',
+                x: '(w-tw)/2',
                 y: '(main_h-60)',
                 reload: 1,
                 shadowcolor: 'black',
@@ -41,7 +41,7 @@ module.exports.Start = async () => {
                 shadowy: 2,
             }
         })
-        .addInput("https://ais-sa2.cdnstream1.com/2070_128.mp3")
+        .addInput("http://hyades.shoutca.st:8043/stream")
         .size(process.env.VIDEO_SIZE)
         .videoBitrate(process.env.BITRATE)
         .withAspect('16:9')
